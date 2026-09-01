@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ผักสดใส (Clean & Healthy) - ติดต่อเรา</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Kanit', 'sans-serif'], cursive: ['Dancing Script', 'cursive'], },
+                    colors: { primary: '#6B9D45', secondary: '#2E501C', bglight: '#EFF6EE', }
+                }
+            }
+        }
+    </script>
+    <style>
+        .vertical-divider { border-left: 1px solid #C5D6C0; height: 100%; }
+        /* 3D Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-3d {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float-slow {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .float-3d-slow {
+            animation: float-slow 8s ease-in-out infinite;
+        }
+        /* Glassmorphism 3D Card */
+        .glass-card-3d {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255,255,255,1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass-card-3d:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(107, 157, 69, 0.15), inset 0 1px 0 rgba(255,255,255,1);
+        }
+        /* Background Blobs */
+        .bg-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gradient-to-br from-[#F4F9F4] via-[#FFFFFF] to-[#E9F4E9] bg-fixed flex flex-col min-h-screen relative overflow-x-hidden">
+    <!-- 3D Background Blobs -->
+    <div class="bg-blob w-[500px] h-[500px] bg-primary/20 top-[-10%] left-[-10%] float-3d-slow"></div>
+    <div class="bg-blob w-[600px] h-[600px] bg-[#E9F4E9]/80 bottom-[-10%] right-[-10%] float-3d"></div>
+
+    <!-- 1. Navbar -->
+    <nav class="bg-white/90 backdrop-blur-md py-4 z-50 sticky top-0 shadow-[0_10px_30px_rgba(0,0,0,0.05)] border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="w-16 h-16 rounded-full border-2 border-primary flex items-center justify-center overflow-hidden shadow-md">
+                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Logo" class="w-full h-full object-cover">
+                    </div>
+                </a>
+                <div class="hidden md:flex space-x-12 items-center">
+                    <a href="index.html" class="text-gray-600 hover:text-primary font-medium transition-colors">หน้าแรก</a>
+                    <a href="menu.html" class="text-gray-600 hover:text-primary font-medium transition-colors">เมนู</a>
+                    <a href="article.html" class="text-gray-600 hover:text-primary font-medium transition-colors">บทความ</a>
+                    <a href="about.html" class="text-gray-600 hover:text-primary font-medium transition-colors">เกี่ยวกับเรา</a>
+                    <a href="contact.html" class="text-primary font-bold border-b-2 border-primary pb-0.5">ติดต่อเรา</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none"><i class="fa-solid fa-bars text-2xl"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0 top-full shadow-lg">
+            <div class="px-4 pt-2 pb-4 space-y-1 sm:px-6">
+                <a href="index.html" class="block px-3 py-2 text-gray-600 hover:text-primary hover:bg-[#F0F7F0] rounded-md transition-colors">หน้าแรก</a>
+                <a href="menu.html" class="block px-3 py-2 text-gray-600 hover:text-primary hover:bg-[#F0F7F0] rounded-md transition-colors">เมนู</a>
+                <a href="article.html" class="block px-3 py-2 text-gray-600 hover:text-primary hover:bg-[#F0F7F0] rounded-md transition-colors">บทความ</a>
+                <a href="about.html" class="block px-3 py-2 text-gray-600 hover:text-primary hover:bg-[#F0F7F0] rounded-md transition-colors">เกี่ยวกับเรา</a>
+                <a href="contact.html" class="block px-3 py-2 text-primary font-bold bg-[#F0F7F0] rounded-md">ติดต่อเรา</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- เลย์เอาต์ฟอร์มและแผนที่ 3D -->
+    <section class="my-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                
+                <!-- ฝั่งซ้าย: ฟอร์มส่งข้อความ -->
+                <div class="glass-card-3d rounded-3xl p-8 md:p-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 flex items-center drop-shadow-sm">
+                        ส่งข้อความถึงเรา <i class="fa-solid fa-leaf text-primary ml-3 text-2xl drop-shadow-sm"></i>
+                    </h2>
+                    
+                    <form action="#" method="POST" class="space-y-6 relative z-10">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">ชื่อ - นามสกุล <span class="text-red-500">*</span></label>
+                                <input type="text" class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm placeholder-gray-400 transition-all shadow-inner" placeholder="กรอกชื่อ - นามสกุล" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">เบอร์โทรศัพท์ <span class="text-red-500">*</span></label>
+                                <input type="tel" class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm placeholder-gray-400 transition-all shadow-inner" placeholder="กรอกเบอร์โทรศัพท์" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">รายละเอียด <span class="text-red-500">*</span></label>
+                            <textarea rows="4" class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm placeholder-gray-400 resize-none transition-all shadow-inner" placeholder="พิมพ์ข้อความของคุณที่นี่..." required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-primary to-[#8CA560] hover:from-secondary hover:to-primary text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 text-sm flex items-center justify-center mt-4 shadow-[0_10px_20px_rgba(107,157,69,0.3)] hover:shadow-[0_15px_30px_rgba(107,157,69,0.4)] transform hover:-translate-y-1">
+                            <i class="fa-solid fa-paper-plane mr-2"></i> ส่งข้อความ
+                        </button>
+                    </form>
+                </div>
+
+                <!-- ฝั่งขวา: แผนที่ร้าน 3D -->
+                <div class="glass-card-3d rounded-3xl p-8 md:p-12 flex flex-col relative overflow-hidden">
+                    <div class="absolute -top-20 -right-20 w-64 h-64 bg-green-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 flex items-center relative z-10 drop-shadow-sm">
+                        แผนที่ร้านของเรา <i class="fa-solid fa-map-location-dot text-primary ml-3 text-2xl drop-shadow-sm"></i>
+                    </h2>
+                    
+                    <div class="w-full flex-grow rounded-2xl overflow-hidden border-4 border-white shadow-[0_10px_30px_rgba(0,0,0,0.1)] bg-gray-100 relative min-h-[350px] mb-8 z-10 transform hover:scale-[1.02] transition-transform duration-500">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3877.948126789723!2d100.59604311527787!3d13.599669590445308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2a61d15dbd0f1%3A0x6b3db67bc45f1b13!2z4Lit4Liz4LmA4Lig4Lit4LmA4Lih4Li34Lit4LiH4Liq4Lih4Li44LiX4Lij4Lib4Lij4Liy4LiB4Liy4Lij!5e0!3m2!1sth!2sth!4v1689234567890!5m2!1sth!2sth" 
+                            class="absolute inset-0 w-full h-full" style="border:0;" allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+                    
+                    <a href="https://maps.google.com" target="_blank" class="relative z-10 w-full bg-white border-2 border-primary hover:bg-primary hover:text-white text-primary font-bold py-4 rounded-xl text-sm flex items-center justify-center transition-all duration-300 shadow-md hover:shadow-[0_10px_20px_rgba(107,157,69,0.3)] transform hover:-translate-y-1">
+                        <i class="fa-solid fa-location-dot mr-2"></i> เปิดเส้นทางด้วย Google Maps
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ส่วน Footer -->
+    <footer class="bg-white text-gray-700 py-12 mt-auto shadow-[0_-10px_30px_rgba(0,0,0,0.03)] border-t border-gray-100 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="flex flex-col items-start pr-4">
+                    <div class="w-16 h-16 rounded-full border-2 border-primary flex items-center justify-center overflow-hidden mb-4 shadow-md"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&w=100&q=80" class="w-full h-full object-cover"></div>
+                    <p class="text-xs font-bold text-gray-800 mb-1">"Fresh + Healthy + Everyday"</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
